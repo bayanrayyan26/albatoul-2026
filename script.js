@@ -26,7 +26,6 @@ const products = [
             "image/ادناء سحاب مخفي اخضر بارد.jpg",
             "image/ادناء سحاب نهدي.jpg"
         ],
-        
     },
     {
         id: 3,
@@ -131,7 +130,7 @@ const products = [
     },
     {
         id: 11,
-        title: "معطف شتوي سكني",
+        title: "معطف شتوي ابيض",
         price: "220 شيكل",
         desc: "معطف شتوي جميل وانيق بدمج لونين",
         sizes: ["38", "40", "42", "44", "46", "48", "50", "52"],
@@ -282,13 +281,14 @@ function closeProduct() { document.getElementById('productPopup').style.display 
 
 function orderWhatsApp() {
     const phone = "972594935357";
+    const currentImageUrl = currentMediaList[slideIndex].url; 
     
-    const currentImageUrl = currentMediaList[slideIndex].url;
+    const fileNameWithExt = currentImageUrl.split('/').pop();
+    const fileName = fileNameWithExt.split('.')[0];
+    
    
-    const fileName = currentImageUrl.split('/').pop().split('.')[0];
-    
-
-    const fullImageUrl = "https://bayanrayyan26.github.io/albatoul-2026/" + currentImageUrl;
+    const baseUrl = "https://bayanrayyan26.github.io/albatoul-2026/";
+    const fullImageUrl = baseUrl + encodeURI(currentImageUrl);
 
     const message = `مرحباً البتول للزي الشرعي،\n` +
                   `أود طلب الموديل: ${activeProduct.title}\n` +
