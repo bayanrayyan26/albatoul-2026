@@ -89,7 +89,7 @@ const products = [
         sizes: ["40", "42", "44"],
         images: [
             "image/جلباب اخضر.jpeg",
-            "image/جلباب اسود.jpeg",
+            "image/جلباب اسود مع حركة.jpeg",
             "image/جلباب زهري.jpeg",
         ], 
     },
