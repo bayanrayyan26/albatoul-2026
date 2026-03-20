@@ -30,7 +30,7 @@ const products = [
     },
     {
         id: 3,
-        title: "عباءة ورق شجر",
+        title: "عباءة قطعتين ورق شجر",
         price: "200 شيكل",
         desc: "عباءة قطعتين مع نقش ورق الشجر الجميل على اليد",
         sizes: ["38", "40", "42", "44", "46", "48"],
@@ -106,7 +106,7 @@ const products = [
         id: 9,
         title: "الثوب الفلسطيني",
         price: "280 شيكل",
-        desc: "ثوب فلسطيني مطرز بكل حب، ليعكس هويتكِ وجمالكِ بلمسة شرعية راقية.",
+        desc: "أصالة الماضي وأناقة الحاضر في قطعة واحدة. ثوب فلسطيني مطرز بكل حب، ليعكس هويتكِ وجمالكِ بلمسة شرعية راقية.",
         sizes: ["38", "40", "42", "44", "46", "48"],
         images: [
             "image/ثوب ازرق.jpeg",
@@ -121,26 +121,64 @@ const products = [
         desc: "اي قطعة داخل هذا الالبوم فقط 100 شيكل",
         sizes: ["40", "42", "44", "46", "48", "50", "52", "54"],
         images: [
+            "image/جلباب بيج.jpeg",
+            "image/جلباب سكني.jpeg",
             "image/طقم اخضر.jpeg",
             "image/طقم خمري.jpeg",
             "image/عباية رمضان.jpeg",
             "image/عباية قطعتين اخضر سترس.jpeg",
         ], 
     },
+    {
+        id: 11,
+        title: "معطف شتوي سكني",
+        price: "220 شيكل",
+        desc: "معطف شتوي جميل وانيق بدمج لونين",
+        sizes: ["38", "40", "42", "44", "46", "48", "50", "52"],
+        images: [
+            "image/معطف ابيض واسود.jpeg",
+            "image/معطف ابيض وسكني.jpeg",
+        ], 
+    },
+    {
+        id: 12,
+        title: "معطف شتوي ملون",
+        price: "250 شيكل",
+        desc: "معطف شتوي جميل وانيق ",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        images: [
+            "image/معطف ابيض.jpeg",
+            "image/معطف اخضر.jpeg",
+            "image/معطف بيج.jpeg",
+        ], 
+    },
+    {
+        id: 13,
+        title: "جلباب شتوي دمج",
+        price: "250 شيكل",
+        desc:  " جلباب شتوي انيق ومميز بدمج اللون الابيض مع الاسود او الكحلي",
+        sizes: ["38", "40", "42", "44", "46"],
+        images: [
+            "image/جلباب شتوي.jpeg",
+        ], 
+    },
+    {
+        id: 14,
+        title: "جلباب انيق",
+        price: "260 شيكل",
+        desc:  "جلباب انيق ومميز ",
+        sizes: ["40", "42", "44", "46","48", "50", "52", "54", "56", "58"],
+        images: [
+            "image/جلباب نهدي.jpeg",
+            "image/جلباب اسود.jpeg",
+        ], 
+    },
 ];
 
 let activeProduct = null;
 let selectedSize = "";
-let selectedColorName = "";
 let slideIndex = 0;
 let currentMediaList = [];
-
-// قاموس لترجمة أسماء الألوان من اسم الملف إلى أكواد ألوان للدوائر
-const colorMap = {
-    "اخضر": "#006400", "أخضر": "#006400", "اسود": "#000000", "أسود": "#000000",
-    "خمري": "#800000", "بيج": "#F5F5DC", "نهدي": "#4B0082", "زهري": "#FFC0CB",
-    "سكني": "#808080", "ازرق": "#0000FF", "بني": "#8B4513", "كحلي": "#000080", "أبيض": "#FFFFFF"
-};
 
 function initStore() {
     const grid = document.getElementById('mainGrid');
@@ -152,7 +190,10 @@ function initStore() {
         card.onclick = () => openProduct(p.id);
         card.innerHTML = `
             <img src="${p.images[0]}" alt="${p.title}">
-            <div class="card-info"><p>${p.title}</p><span>عرض التفاصيل ◄</span></div>
+            <div class="card-info">
+                <p>${p.title}</p>
+                <span>عرض التفاصيل ◄</span>
+            </div>
         `;
         grid.appendChild(card);
     });
@@ -163,12 +204,14 @@ function startEidCelebration() {
     const endDate = new Date(2026, 2, 24); 
     if (today <= endDate) {
         const greeting = document.getElementById('eidGreeting');
-        greeting.style.display = 'flex';
-        for (let i = 0; i < 80; i++) { createConfetti(); }
-        setTimeout(() => {
-            greeting.style.opacity = '0';
-            setTimeout(() => { greeting.style.display = 'none'; }, 1000);
-        }, 5000); 
+        if(greeting) {
+            greeting.style.display = 'flex';
+            for (let i = 0; i < 80; i++) { createConfetti(); }
+            setTimeout(() => {
+                greeting.style.opacity = '0';
+                setTimeout(() => { greeting.style.display = 'none'; }, 1000);
+            }, 5000); 
+        }
     }
 }
 
@@ -179,7 +222,8 @@ function createConfetti() {
     confetti.style.backgroundColor = ['#f87a9f', '#f8a5c2', '#ffcc00', '#00ccff'][Math.floor(Math.random() * 4)];
     confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
     confetti.style.opacity = Math.random();
-    document.getElementById('eidGreeting').appendChild(confetti);
+    const greeting = document.getElementById('eidGreeting');
+    if(greeting) greeting.appendChild(confetti);
 }
 
 function openProduct(id) {
@@ -188,49 +232,15 @@ function openProduct(id) {
     document.getElementById('pTitle').innerText = activeProduct.title;
     document.getElementById('pPrice').innerText = activeProduct.price;
     document.getElementById('pDesc').innerText = activeProduct.desc;
-    
     updateSizeUI();
-    updateColorUI(); // إضافة الألوان
     prepareMedia(); 
     document.getElementById('productPopup').style.display = 'flex';
-}
-
-function updateColorUI() {
-    const colorBox = document.getElementById('colorOptions');
-    colorBox.innerHTML = '';
-    
-    // نستخرج الألوان من أسماء الصور فقط (نتجاهل صورة "تفاصيل")
-    activeProduct.images.forEach((img, index) => {
-        const fileName = img.split('/').pop().split('.')[0];
-        let detectedColor = "transparent";
-        
-        // محاولة إيجاد كود اللون من القاموس
-        for (let key in colorMap) {
-            if (fileName.includes(key)) {
-                detectedColor = colorMap[key];
-                break;
-            }
-        }
-
-        if(detectedColor !== "transparent") {
-            const circle = document.createElement('div');
-            circle.className = `color-circle ${index === slideIndex ? 'active' : ''}`;
-            circle.style.backgroundColor = detectedColor;
-            circle.title = fileName;
-            circle.onclick = () => {
-                slideIndex = index;
-                selectedColorName = fileName;
-                renderSlides();
-                updateColorUI();
-            };
-            colorBox.appendChild(circle);
-        }
-    });
 }
 
 function prepareMedia() {
     currentMediaList = [];
     activeProduct.images.forEach(imgUrl => { currentMediaList.push({ type: 'image', url: imgUrl }); });
+    if(activeProduct.video) { currentMediaList.push({ type: 'video', url: activeProduct.video }); }
     slideIndex = 0;
     renderSlides();
 }
@@ -239,16 +249,13 @@ function renderSlides() {
     const container = document.getElementById('slides');
     container.innerHTML = '';
     currentMediaList.forEach((m, i) => {
-        let el = document.createElement('img');
+        let el = m.type === 'image' ? document.createElement('img') : document.createElement('video');
+        if(m.type === 'video') { el.controls = true; el.muted = true; el.autoplay = true; }
         el.src = m.url;
         if(i === slideIndex) el.className = 'active';
         container.appendChild(el);
     });
     document.getElementById('counter').innerText = `${slideIndex + 1} / ${currentMediaList.length}`;
-    
-    // تحديث اسم اللون المختار بناءً على الصورة الحالية
-    const currentImg = currentMediaList[slideIndex].url;
-    selectedColorName = currentImg.split('/').pop().split('.')[0];
 }
 
 function changeSlide(n) {
@@ -256,17 +263,17 @@ function changeSlide(n) {
     if(slideIndex >= currentMediaList.length) slideIndex = 0;
     if(slideIndex < 0) slideIndex = currentMediaList.length - 1;
     renderSlides();
-    updateColorUI();
 }
 
 function updateSizeUI() {
     const sizeBox = document.getElementById('sizeOptions');
+    if(!sizeBox) return;
     sizeBox.innerHTML = '';
     activeProduct.sizes.forEach(s => {
         const btn = document.createElement('div');
         btn.className = `size-btn ${s === selectedSize ? 'active' : ''}`;
         btn.innerText = s;
-        btn.onclick = () => { selectedSize = s; updateSizeUI(); };
+        btn.onclick = (e) => { e.stopPropagation(); selectedSize = s; updateSizeUI(); };
         sizeBox.appendChild(btn);
     });
 }
@@ -275,12 +282,17 @@ function closeProduct() { document.getElementById('productPopup').style.display 
 
 function orderWhatsApp() {
     const phone = "972594935357";
+    
     const currentImageUrl = currentMediaList[slideIndex].url;
+   
+    const fileName = currentImageUrl.split('/').pop().split('.')[0];
+    
+
     const fullImageUrl = "https://bayanrayyan26.github.io/albatoul-2026/" + currentImageUrl;
 
     const message = `مرحباً البتول للزي الشرعي،\n` +
                   `أود طلب الموديل: ${activeProduct.title}\n` +
-                  `اللون المطلوب: ${selectedColorName}\n` +
+                  `اللون المختار (حسب الصورة): ${fileName}\n` +
                   `المقاس: ${selectedSize}\n` +
                   `السعر: ${activeProduct.price}\n` +
                   `رابط الصورة: ${fullImageUrl}`;
