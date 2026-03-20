@@ -1,7 +1,8 @@
+/* الأكواد السابقة كما هي، أضيفي عليها هذه التعديلات فقط أو استبدلي الملف كاملاً */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Tajawal', sans-serif; background: #fff; color: #444; overflow-x: hidden; }
 
-/* --- تأثير العيد الجديد --- */
+/* --- تأثير العيد --- */
 .eid-canvas-container {
     position: fixed; inset: 0; z-index: 9999;
     background: rgba(255, 255, 255, 0.95);
@@ -53,6 +54,26 @@ body { font-family: 'Tajawal', sans-serif; background: #fff; color: #444; overfl
 .options-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .size-btn { border: 1px solid #f8a5c2; padding: 8px 18px; border-radius: 8px; cursor: pointer; color: #f8a5c2; transition: 0.3s; }
 .size-btn.active { background: #f8a5c2; color: white; }
+
+/* --- تصميم دوائر الألوان --- */
+.color-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.color-circle.active {
+    border-color: #f87a9f;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(248, 122, 159, 0.5);
+}
+
 .order-btn { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.3rem; font-weight: bold; cursor: pointer; margin-top: 20px; }
 
 @media (min-width: 1024px) { .popup-flex { flex-direction: row; } .slider-area { width: 60%; height: 650px; } .info-area { width: 40%; } }
