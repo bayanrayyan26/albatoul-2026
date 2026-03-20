@@ -28,12 +28,11 @@ const products = [
         ],
         
     },
-
     {
         id: 3,
-        title: "عباءة قطعتين",
+        title: "عباءة قطعتين ورق شجر",
         price: "200 شيكل",
-        desc: "عباءة قطعتين مع نقش ورق الشجر  الجميل على اليد",
+        desc: "عباءة قطعتين مع نقش ورق الشجر الجميل على اليد",
         sizes: ["38", "40", "42", "44", "46", "48"],
         images: [
             "image/عباية قطعتين ورق شجر سكني.jpeg",
@@ -41,10 +40,9 @@ const products = [
             "image/عباية قطعتين وورق الشجر اخضر.jpeg",
         ], 
     },
-
- {
+    {
         id: 4,
-        title: "عباءة قطعتين",
+        title: "عباءة الخط العربي",
         price: "200 شيكل",
         desc: "عباءة قطعتين مع نقش حروف اللغة العربية على اليد والحزام",
         sizes: ["38", "40", "42", "44", "46", "48"],
@@ -53,10 +51,9 @@ const products = [
             "image/عباية الخط العربي زهري.jpeg",
         ], 
     },
-
     {
         id: 5,
-        title: "عباءة قطعتين",
+        title: "فستان عباية خصر",
         price: "200 شيكل",
         desc: "عباءة قطعتين مح حركة جميلة عند الخصر",
         sizes: ["38", "40", "42", "44", "46", "48"],
@@ -66,10 +63,9 @@ const products = [
             "image/فستان عباية نهدي.jpeg",
         ], 
     },
-
     {
         id: 6,
-        title: "فستان",
+        title: "فستان سترس فضي",
         price: "180 شيكل",
         desc: "فستان أنيق مع سترس فضي ",
         sizes: ["38", "40", "42", "44", "46", "48"],
@@ -80,10 +76,9 @@ const products = [
             "image/فستان مع خط فضي نهدي.jpeg",
         ], 
     },
-    
     {
         id: 7,
-        title: "جلباب",
+        title: "جلباب حركة صدر",
         price: "170 شيكل",
         desc: "جلباب انيق مع حركة مميزة على الصدر  ",
         sizes: ["40", "42", "44"],
@@ -93,9 +88,9 @@ const products = [
             "image/جلباب زهري.jpeg",
         ], 
     },
-     {
+    {
         id: 8,
-        title: "ادناء شتوي مميز",
+        title: "ادناء شتوي",
         price: "250 شيكل",
         desc: "ادناء شتوي وشرعي بخامة ممتازة، مريح جداً ، متوفر مع بنطال عريض او تنورة",
         sizes: ["S", "M", "L"],
@@ -107,8 +102,7 @@ const products = [
             "image/ادناء نهدي.jpeg",
         ], 
     },
-
-     {
+    {
         id: 9,
         title: "الثوب الفلسطيني",
         price: "280 شيكل",
@@ -120,8 +114,7 @@ const products = [
             "image/ثوب ملون.jpeg",
         ], 
     },
-
-     {
+    {
         id: 10,
         title: "قسم العروض",
         price: "100 شيكل",
@@ -136,10 +129,9 @@ const products = [
             "image/عباية قطعتين اخضر سترس.jpeg",
         ], 
     },
-
-     {
+    {
         id: 11,
-        title: "معطف شتوي",
+        title: "معطف شتوي ابيض",
         price: "220 شيكل",
         desc: "معطف شتوي جميل وانيق بدمج لونين",
         sizes: ["38", "40", "42", "44", "46", "48", "50", "52"],
@@ -148,10 +140,9 @@ const products = [
             "image/معطف ابيض وسكني.jpeg",
         ], 
     },
-
- {
+    {
         id: 12,
-        title: "معطف شتوي",
+        title: "معطف شتوي ملون",
         price: "250 شيكل",
         desc: "معطف شتوي جميل وانيق ",
         sizes: ["38", "40", "42", "44", "46", "48"],
@@ -161,10 +152,9 @@ const products = [
             "image/معطف بيج.jpeg",
         ], 
     },
-
     {
         id: 13,
-        title: "جلباب شتوي",
+        title: "جلباب شتوي دمج",
         price: "250 شيكل",
         desc:  " جلباب شتوي انيق ومميز بدمج اللون الابيض مع الاسود او الكحلي",
         sizes: ["38", "40", "42", "44", "46"],
@@ -172,10 +162,9 @@ const products = [
             "image/جلباب شتوي.jpeg",
         ], 
     },
-
-     {
+    {
         id: 14,
-        title: "جلباب ",
+        title: "جلباب انيق",
         price: "260 شيكل",
         desc:  "جلباب انيق ومميز ",
         sizes: ["40", "42", "44", "46","48", "50", "52", "54", "56", "58"],
@@ -210,12 +199,9 @@ function initStore() {
     });
 }
 
-
 function startEidCelebration() {
     const today = new Date();
-   
     const endDate = new Date(2026, 2, 24); 
-
     if (today <= endDate) {
         const greeting = document.getElementById('eidGreeting');
         greeting.style.display = 'flex';
@@ -292,8 +278,22 @@ function updateSizeUI() {
 function closeProduct() { document.getElementById('productPopup').style.display = 'none'; }
 
 function orderWhatsApp() {
-    const phone = "972594935357"; 
-    const message = `مرحباً البتول للزي الشرعي،\nأود طلب الموديل: ${activeProduct.title}\nالمقاس: ${selectedSize}\nالسعر: ${activeProduct.price}`;
+    const phone = "972594935357";
+    // جلب رابط الصورة التي يشاهدها المستخدم حالياً
+    const currentImageUrl = currentMediaList[slideIndex].url;
+    // استخراج اسم اللون من رابط الصورة (مثلاً: "اخضر" من "جلباب اخضر.jpeg")
+    const fileName = currentImageUrl.split('/').pop().split('.')[0];
+    
+    // بناء رابط الصورة الكامل (باستخدام رابط GitHub الخاص بكِ ليظهر معاينة في الواتساب)
+    const fullImageUrl = "https://bayanrayyan26.github.io/albatoul-2026/" + currentImageUrl;
+
+    const message = `مرحباً البتول للزي الشرعي،\n` +
+                  `أود طلب الموديل: ${activeProduct.title}\n` +
+                  `اللون المختار (حسب الصورة): ${fileName}\n` +
+                  `المقاس: ${selectedSize}\n` +
+                  `السعر: ${activeProduct.price}\n` +
+                  `رابط الموديل: ${fullImageUrl}`;
+
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
