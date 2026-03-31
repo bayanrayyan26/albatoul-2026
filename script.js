@@ -14,7 +14,7 @@ const products = [
         price: "200 شيكل",
         desc: "ادناء شرعي بخامة ممتازة، مريح جداً وعصري ، متوفر مع بنطال عريض او تنورة.",
         sizes: ["S", "M", "L"],
-        soldOutSizes: ["S"],
+        soldOutSizes: [],
         images: ["image/تفاصيل ادناء سحاب.jpg", "image/ادناء سحاب كامل زهري.jpg", "image/ادناء سحاب مخفي اخضر بارد.jpg", "image/ادناء سحاب نهدي.jpg"]
     },
     {
