@@ -1,133 +1,96 @@
+// مثال توضيحي لكيفية ربط كل صورة بنمرها (طبقي هذا النمط على كل المنتجات)
 const products = [
+    { 
+        id: 1, 
+        title: "ادناء ازرار كامل", 
+        price: "200 شيكل", 
+        desc: "ادناء شرعي بخامة ممتازة.",
+        // كل صورة هنا عبارة عن كائن (Object) يحتوي المسار والنمر المتوفرة لها
+        variants: [
+            { img: "image/ادناء ازرار اخضر غامق.jpg", sizes: ["S", "M"], soldOut: ["L"] },
+            { img: "image/ادناء ازرار كامل خمري.jpg", sizes: ["M", "L"], soldOut: ["S"] },
+            { img: "image/ادناء ازرار لون بيج.jpg", sizes: ["S", "M", "L"], soldOut: [] }
+        ]
+    },
+    { 
+        id: 9, 
+        title: "الثوب الفلسطيني", 
+        price: "280 شيكل", 
+        desc: "أصالة وأناقة.",
+        variants: [
+            { img: "image/ثوب ازرق.jpeg", sizes: ["38", "40", "42"], soldOut: ["44"] },
+            { img: "image/ثوب كامل.jpeg", sizes: ["38", "40", "42", "44"], soldOut: [] }
+        ]
+    }
+    // ... كرري نفس النمط لبقية الـ 14 موديل
+];
 
-{
-id:1,title:"ادناء ازرار كامل",price:"200 شيكل",desc:"ادناء شرعي بخامة ممتازة",
-images:[
-{src:"image/تفاصيل ادناء ازرار.jpg",color:"تفاصيل",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء ازرار اخضر غامق.jpg",color:"اخضر غامق",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء ازرار كامل اخضر.jpg",color:"اخضر",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء ازرار كامل خمري.jpg",color:"خمري",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء ازرار لون بيج.jpg",color:"بيج",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء ازرار نهدي غامق.jpg",color:"نهدي",sizes:["S","M","L"],soldOut:[]}
-]
-},
+let activeProduct = null, slideIndex = 0, selectedSize = "";
 
-{
-id:2,title:"ادناء سحاب مخفي",price:"200 شيكل",desc:"ادناء عصري",
-images:[
-{src:"image/تفاصيل ادناء سحاب.jpg",color:"تفاصيل",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء سحاب كامل زهري.jpg",color:"زهري",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء سحاب مخفي اخضر بارد.jpg",color:"اخضر بارد",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء سحاب نهدي.jpg",color:"نهدي",sizes:["S","M","L"],soldOut:[]}
-]
-},
-
-{
-id:3,title:"عباءة قطعتين ورق شجر",price:"200 شيكل",desc:"عباءة جميلة",
-images:[
-{src:"image/عباية قطعتين ورق شجر سكني.jpeg",color:"سكني",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/عباية قطعتين ورق شجر خمري.jpeg",color:"خمري",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/عباية قطعتين وورق الشجر اخضر.jpeg",color:"اخضر",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:4,title:"عباءة الخط العربي",price:"200 شيكل",desc:"عباءة بنقش عربي",
-images:[
-{src:"image/عباية الخط العربي اسود.jpeg",color:"اسود",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/عباية الخط العربي زهري.jpeg",color:"زهري",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:5,title:"فستان عباية خصر",price:"200 شيكل",desc:"عباءة مع خصر",
-images:[
-{src:"image/فستان عباية اخضر.jpeg",color:"اخضر",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/فستان عباية اسود.jpeg",color:"اسود",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/فستان عباية نهدي.jpeg",color:"نهدي",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:6,title:"فستان سترس فضي",price:"180 شيكل",desc:"فستان أنيق",
-images:[
-{src:"image/فستان مع خط فضي اخضر.jpeg",color:"اخضر",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/فستان مع خط فضي ازرق.jpeg",color:"ازرق",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/فستان مع خط فضي بيج.jpeg",color:"بيج",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/فستان مع خط فضي نهدي.jpeg",color:"نهدي",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:7,title:"جلباب",price:"170 شيكل",desc:"جلباب انيق",
-images:[
-{src:"image/جلباب اخضر.jpeg",color:"اخضر",sizes:["40","42","44"],soldOut:[]},
-{src:"image/جلباب اسود مع حركة.jpeg",color:"اسود",sizes:["40","42","44"],soldOut:[]},
-{src:"image/جلباب زهري.jpeg",color:"زهري",sizes:["40","42","44"],soldOut:[]}
-]
-},
-
-{
-id:8,title:"ادناء شتوي",price:"250 شيكل",desc:"ادناء شتوي ثقيل",
-images:[
-{src:"image/ادناء بني مود2.jpeg",color:"بني",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء بني.jpeg",color:"بني غامق",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء خمري.jpeg",color:"خمري",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء كحلي.jpeg",color:"كحلي",sizes:["S","M","L"],soldOut:[]},
-{src:"image/ادناء نهدي.jpeg",color:"نهدي",sizes:["S","M","L"],soldOut:[]}
-]
-},
-
-{
-id:9,title:"الثوب الفلسطيني",price:"280 شيكل",desc:"ثوب مطرز",
-images:[
-{src:"image/ثوب ازرق.jpeg",color:"ازرق",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/ثوب كامل.jpeg",color:"كامل",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/ثوب ملون.jpeg",color:"ملون",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:10,title:"قسم العروض",price:"100 شيكل",desc:"عرض خاص",
-images:[
-{src:"image/جلباب بيج.jpeg",color:"بيج",sizes:["40","42","44","46","48","50","52","54"],soldOut:[]},
-{src:"image/جلباب سكني.jpeg",color:"سكني",sizes:["40","42","44","46","48","50","52","54"],soldOut:[]},
-{src:"image/طقم اخضر.jpeg",color:"اخضر",sizes:["40","42","44","46","48","50","52","54"],soldOut:[]},
-{src:"image/طقم خمري.jpeg",color:"خمري",sizes:["40","42","44","46","48","50","52","54"],soldOut:[]},
-{src:"image/عباية رمضان.jpeg",color:"رمضان",sizes:["40","42","44","46","48","50","52","54"],soldOut:[]}
-]
-},
-
-{
-id:11,title:"معطف شتوي ابيض",price:"220 شيكل",desc:"معطف دافئ",
-images:[
-{src:"image/معطف ابيض واسود.jpeg",color:"ابيض اسود",sizes:["38","40","42","44","46","48","50","52"],soldOut:[]},
-{src:"image/معطف ابيض وسكني.jpeg",color:"ابيض سكني",sizes:["38","40","42","44","46","48","50","52"],soldOut:[]}
-]
-},
-
-{
-id:12,title:"معطف شتوي ملون",price:"250 شيكل",desc:"معطف عصري",
-images:[
-{src:"image/معطف ابيض.jpeg",color:"ابيض",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/معطف اخضر.jpeg",color:"اخضر",sizes:["38","40","42","44","46","48"],soldOut:[]},
-{src:"image/معطف بيج.jpeg",color:"بيج",sizes:["38","40","42","44","46","48"],soldOut:[]}
-]
-},
-
-{
-id:13,title:"جلباب شتوي",price:"250 شيكل",desc:"جلباب شتوي",
-images:[
-{src:"image/جلباب شتوي.jpeg",color:"اسود",sizes:["38","40","42","44","46"],soldOut:[]}
-]
-},
-
-{
-id:14,title:"جلباب انيق",price:"260 شيكل",desc:"جلباب فاخر",
-images:[
-{src:"image/جلباب نهدي.jpeg",color:"نهدي",sizes:["40","42","44","46","48","50","52","54","56","58"],soldOut:[]},
-{src:"image/جلباب اسود.jpeg",color:"اسود",sizes:["40","42","44","46","48","50","52","54","56","58"],soldOut:[]}
-]
+function initStore() {
+    const grid = document.getElementById('mainGrid');
+    grid.innerHTML = '';
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => openProduct(p.id);
+        card.innerHTML = `<img src="${p.variants[0].img}"><p>${p.title}</p>`;
+        grid.appendChild(card);
+    });
 }
 
-];
+function openProduct(id) {
+    activeProduct = products.find(p => p.id === id);
+    slideIndex = 0;
+    renderPopup();
+    document.getElementById('productPopup').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function renderPopup() {
+    const variant = activeProduct.variants[slideIndex];
+    document.getElementById('pTitle').innerText = activeProduct.title;
+    document.getElementById('pPrice').innerText = activeProduct.price;
+    document.getElementById('pDesc').innerText = activeProduct.desc;
+    
+    // تحديث الصور
+    const slider = document.getElementById('slides');
+    slider.innerHTML = '';
+    activeProduct.variants.forEach((v, i) => {
+        const img = document.createElement('img');
+        img.src = v.img;
+        if(i === slideIndex) img.className = 'active';
+        slider.appendChild(img);
+    });
+
+    // تحديث النمر بناءً على الصورة الحالية (نظام شي إن)
+    const sizeBox = document.getElementById('sizeOptions');
+    sizeBox.innerHTML = '';
+    variant.sizes.concat(variant.soldOut).sort().forEach(s => {
+        const isSold = variant.soldOut.includes(s);
+        const btn = document.createElement('div');
+        btn.className = `size-btn ${s === selectedSize ? 'active' : ''} ${isSold ? 'sold-out' : ''}`;
+        btn.innerText = s;
+        if(!isSold) btn.onclick = () => { selectedSize = s; renderPopup(); };
+        sizeBox.appendChild(btn);
+    });
+
+    document.getElementById('counter').innerText = `${slideIndex + 1} / ${activeProduct.variants.length}`;
+}
+
+function changeSlide(n) {
+    slideIndex = (slideIndex + n + activeProduct.variants.length) % activeProduct.variants.length;
+    selectedSize = ""; // تصفير المقاس عند تغيير اللون
+    renderPopup();
+}
+
+function orderWhatsApp() {
+    if(!selectedSize) { alert("رجاءً اختاري المقاس أولاً"); return; }
+    const phone = "972594935357";
+    const msg = `طلب جديد:\nالموديل: ${activeProduct.title}\nالمقاس: ${selectedSize}\nالسعر: ${activeProduct.price}`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+}
+
+function closeProduct() { document.getElementById('productPopup').style.display = 'none'; document.body.style.overflow = 'auto'; }
+
+window.onload = initStore;
