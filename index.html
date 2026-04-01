@@ -7,63 +7,68 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <header class="hero">
-        <video autoplay muted loop id="mainVideo">
-            <source src="video/main-intro.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay">
-            <div class="main-branding">
-                <h1>البتول للزي الشرعي</h1>
-                <p class="address">📍 رام الله _ شارع الارسال _ عمارة الستي مول - الطابق الاول</p>
-            </div>
-            <div class="floating-bubble">
-                مرحباً بكِ! يمكنكِ التسوق من الموقع <br> أو تشريفنا بزيارة محلنا ✨
-            </div>
-        </div>
-    </header>
+<header class="hero">
+    <video autoplay muted loop id="mainVideo">
+        <source src="video/main-intro.mp4" type="video/mp4">
+    </video>
 
-    <section class="social-links">
-        <div class="social-card" onclick="window.open('https://www.facebook.com/profile.php?id=61575629854203')">
-            <img src="image/فيس.svg" alt="Facebook">
-            <span>فيسبوك</span>
+    <div class="hero-overlay">
+        <div class="main-branding">
+            <h1>البتول للزي الشرعي</h1>
+            <p class="address">📍- عمارة الستي مول  - الطابق الاول  رام الله - شارع الارسال</p>
         </div>
-        <div class="social-card" onclick="window.open('https://www.instagram.com/al_batool2025')">
-            <img src="image/انستا.png" alt="Instagram">
-            <span>إنستغرام</span>
-        </div>
-    </section>
 
-    <section class="gallery">
-        <h2 class="section-title">أحدث الموديلات</h2>
-        <div class="product-grid" id="mainGrid"></div>
-    </section>
-
-    <div id="productPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closeProduct()">&times;</span>
-            <div class="popup-flex">
-                <div class="slider-area">
-                    <div id="slides"></div>
-                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
-                    <div id="counter" class="counter">1 / 1</div>
-                </div>
-                <div class="info-area">
-                    <h2 id="pTitle">اسم الموديل</h2>
-                    <p id="pPrice" class="price"></p>
-                    <div class="selection-group">
-                        <label>المقاسات المتوفرة:</label>
-                        <div id="sizeOptions" class="options-row"></div>
-                    </div>
-                    <p id="pDesc" class="desc"></p>
-                    <button id="orderBtn" class="order-btn" onclick="orderWhatsApp()">اطلب الآن عبر واتساب</button>
-                </div>
-            </div>
+        <div class="floating-bubble">
+            مرحباً بكِ! يمكنكِ التسوق من الموقع ✨
         </div>
     </div>
+</header>
 
-    <script src="script.js"></script>
+<section class="gallery">
+    <h2 class="section-title">أحدث الموديلات</h2>
+    <div class="product-grid" id="mainGrid"></div>
+</section>
+
+<div id="productPopup" class="popup">
+    <div class="popup-content">
+
+        <span class="close-btn" onclick="closeProduct()">&times;</span>
+
+        <div class="popup-flex">
+
+            <div class="slider-area">
+                <div id="slides"></div>
+                <button class="prev" onclick="changeSlide(-1)">❮</button>
+                <button class="next" onclick="changeSlide(1)">❯</button>
+                <div id="counter" class="counter">1 / 1</div>
+            </div>
+
+            <div class="info-area">
+                <h2 id="pTitle"></h2>
+                <p id="pPrice" class="price"></p>
+
+                <p id="colorName" class="color-name"></p>
+
+                <div class="selection-group">
+                    <label>المقاسات:</label>
+                    <div id="sizeOptions" class="options-row"></div>
+                </div>
+
+                <p id="pDesc" class="desc"></p>
+
+                <button id="orderBtn" class="order-btn" onclick="orderWhatsApp()">
+                    اطلب عبر واتساب
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
