@@ -1,4 +1,3 @@
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Tajawal', sans-serif; background: #fff; color: #444; direction: rtl; overflow-x: hidden; }
 
@@ -22,35 +21,98 @@ body { font-family: 'Tajawal', sans-serif; background: #fff; color: #444; direct
 .product-card p { padding: 8px; font-weight: bold; color: #f87a9f; font-size: 0.85rem; }
 
 .popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 10px; }
+
 .popup-content { 
-    background: white; width: 100%; max-width: 500px; border-radius: 20px; 
-    position: relative; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; 
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    height: 90vh;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
-.close-btn { position: absolute; top: 10px; left: 10px; font-size: 28px; color: #f87a9f; z-index: 110; background: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-.popup-flex { display: flex; flex-direction: column; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.close-btn { 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    font-size: 28px; 
+    color: #f87a9f; 
+    z-index: 110; 
+    background: white; 
+    border-radius: 50%; 
+    width: 35px; 
+    height: 35px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+}
 
-.slider-area { position: relative; width: 100%; height: 400px; background: #fff; flex-shrink: 0; border-bottom: 1px solid #eee; }
+.popup-flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+.slider-area {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    max-height: 350px;
+    background: #fff;
+    flex-shrink: 0;
+    border-bottom: 1px solid #eee;
+}
+
 .slider-area img { width: 100%; height: 100%; object-fit: contain; display: none; }
 .slider-area img.active { display: block; }
 
-.info-area { padding: 20px; text-align: right; background: white; }
-.price { font-size: 1.5rem; color: #f87a9f; font-weight: bold; margin-bottom: 5px; }
-.desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.4; }
+.info-area {
+    padding: 15px;
+    text-align: right;
+    background: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow: hidden;
+}
 
-.options-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.price { font-size: 1.4rem; color: #f87a9f; font-weight: bold; }
+.desc { font-size: 0.9rem; color: #666; line-height: 1.4; }
+.options-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .size-btn { border: 1px solid #f8a5c2; padding: 8px 15px; border-radius: 8px; cursor: pointer; color: #f87a9f; min-width: 50px; text-align: center; font-weight: bold; font-size: 0.9rem; }
 .size-btn.active { background: #f87a9f; color: white; }
+.disabled-size { opacity: 0.4; pointer-events: none; }
 
-.order-btn { background: #25D366; color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
+.order-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+}
 
 .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; width: 35px; height: 35px; border-radius: 50%; color: #f87a9f; z-index: 10; font-size: 20px; }
-.prev { right: 8px; } .next { left: 8px; }
+.prev { right: 8px; } 
+.next { left: 8px; }
+
 .counter { position: absolute; bottom: 10px; left: 10px; background: rgba(248, 122, 159, 0.8); color: white; padding: 2px 10px; border-radius: 15px; font-size: 0.75rem; z-index: 10; }
 
 @media (min-width: 1024px) {
     .popup-content { max-width: 900px; height: 80vh; }
-    .popup-flex { flex-direction: row; overflow: hidden; }
+    .popup-flex { flex-direction: row; }
     .slider-area { width: 55%; height: 100%; border-bottom: none; border-left: 1px solid #eee; }
-    .info-area { width: 45%; overflow-y: auto; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+    .info-area { width: 45%; padding: 30px; }
 }
