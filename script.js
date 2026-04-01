@@ -1,96 +1,252 @@
-// مثال توضيحي لكيفية ربط كل صورة بنمرها (طبقي هذا النمط على كل المنتجات)
 const products = [
-    { 
-        id: 1, 
-        title: "ادناء ازرار كامل", 
-        price: "200 شيكل", 
-        desc: "ادناء شرعي بخامة ممتازة.",
-        // كل صورة هنا عبارة عن كائن (Object) يحتوي المسار والنمر المتوفرة لها
-        variants: [
-            { img: "image/ادناء ازرار اخضر غامق.jpg", sizes: ["S", "M"], soldOut: ["L"] },
-            { img: "image/ادناء ازرار كامل خمري.jpg", sizes: ["M", "L"], soldOut: ["S"] },
-            { img: "image/ادناء ازرار لون بيج.jpg", sizes: ["S", "M", "L"], soldOut: [] }
-        ]
+    {
+        id: 1,
+        title: "ادناء ازرار كامل",
+        price: "200 شيكل",
+        desc: "ادناء شرعي بخامة ممتازة، مريح جداً وعصري ، متوفر مع بنطال عريض او تنورة.",
+        sizes: ["S", "M", "L"],
+        soldOutSizes: [], 
+        images: ["image/تفاصيل ادناء ازرار.jpg", "image/ادناء ازرار اخضر غامق.jpg", "image/ادناء ازرار كامل اخضر.jpg", "image/ادناء ازرار كامل خمري.jpg", "image/ادناء ازرار لون بيج.jpg", "image/ادناء ازرار نهدي غامق.jpg"]
     },
-    { 
-        id: 9, 
-        title: "الثوب الفلسطيني", 
-        price: "280 شيكل", 
-        desc: "أصالة وأناقة.",
-        variants: [
-            { img: "image/ثوب ازرق.jpeg", sizes: ["38", "40", "42"], soldOut: ["44"] },
-            { img: "image/ثوب كامل.jpeg", sizes: ["38", "40", "42", "44"], soldOut: [] }
-        ]
+    {
+        id: 2,
+        title: "ادناء سحاب مخفي",
+        price: "200 شيكل",
+        desc: "ادناء شرعي بخامة ممتازة، مريح جداً وعصري ، متوفر مع بنطال عريض او تنورة.",
+        sizes: ["S", "M", "L"],
+        soldOutSizes: ["S"],
+        images: ["image/تفاصيل ادناء سحاب.jpg", "image/ادناء سحاب كامل زهري.jpg", "image/ادناء سحاب مخفي اخضر بارد.jpg", "image/ادناء سحاب نهدي.jpg"]
+    },
+    {
+        id: 3,
+        title: "عباءة قطعتين ورق شجر",
+        price: "200 شيكل",
+        desc: "عباءة قطعتين مع نقش ورق الشجر الجميل على اليد",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/عباية قطعتين ورق شجر سكني.jpeg", "image/عباية قطعتين ورق شجر خمري.jpeg", "image/عباية قطعتين وورق الشجر اخضر.jpeg"]
+    },
+    {
+        id: 4,
+        title: "عباءة الخط العربي",
+        price: "200 شيكل",
+        desc: "عباءة قطعتين مع نقش حروف اللغة العربية على اليد والحزام",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/عباية الخط العربي اسود.jpeg", "image/عباية الخط العربي زهري.jpeg"]
+    },
+    {
+        id: 5,
+        title: "فستان عباية خصر",
+        price: "200 شيكل",
+        desc: "عباءة قطعتين مح حركة جميلة عند الخصر",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/فستان عباية اخضر.jpeg", "image/فستان عباية اسود.jpeg", "image/فستان عباية نهدي.jpeg"]
+    },
+    {
+        id: 6,
+        title: "فستان سترس فضي",
+        price: "180 شيكل",
+        desc: "فستان أنيق مع سترس فضي ",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/فستان مع خط فضي اخضر.jpeg", "image/فستان مع خط فضي ازرق.jpeg", "image/فستان مع خط فضي بيج.jpeg", "image/فستان مع خط فضي نهدي.jpeg"]
+    },
+    {
+        id: 7,
+        title: "جلباب ",
+        price: "170 شيكل",
+        desc: "جلباب انيق مع حركة مميزة على الصدر ",
+        sizes: ["40", "42", "44"],
+        soldOutSizes: [],
+        images: ["image/جلباب اخضر.jpeg", "image/جلباب اسود مع حركة.jpeg", "image/جلباب زهري.jpeg"]
+    },
+    {
+        id: 8,
+        title: "ادناء شتوي",
+        price: "250 شيكل",
+        desc: "ادناء شتوي وشرعي بخامة ممتازة، مريح جداً ، متوفر مع بنطال عريض او تنورة",
+        sizes: ["S", "M", "L"],
+        soldOutSizes: [],
+        images: ["image/ادناء بني مود2.jpeg", "image/ادناء بني.jpeg", "image/ادناء خمري.jpeg", "image/ادناء كحلي.jpeg", "image/ادناء نهدي.jpeg"]
+    },
+    {
+        id: 9,
+        title: "الثوب الفلسطيني",
+        price: "280 شيكل",
+        desc: "أصالة الماضي وأناقة الحاضر في قطعة واحدة. ثوب فلسطيني مطرز بكل حب، ليعكس هويتكِ وجمالكِ بلمسة شرعية راقية.",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/ثوب ازرق.jpeg", "image/ثوب كامل.jpeg", "image/ثوب ملون.jpeg"]
+    },
+    {
+        id: 10,
+        title: "قسم العروض",
+        price: "100 شيكل",
+        desc: "اي قطعة داخل هذا الالبوم فقط 100 شيكل",
+        sizes: ["40", "42", "44", "46", "48", "50", "52", "54"],
+        soldOutSizes: [],
+        images: ["image/جلباب بيج.jpeg", "image/جلباب سكني.jpeg", "image/طقم اخضر.jpeg", "image/طقم خمري.jpeg", "image/عباية رمضان.jpeg", "image/عباية قطعتين اخضر سترس.jpeg"]
+    },
+    {
+        id: 11,
+        title: "معطف شتوي ابيض",
+        price: "220 شيكل",
+        desc: "معطف شتوي جميل وانيق بدمج لونين",
+        sizes: ["38", "40", "42", "44", "46", "48", "50", "52"],
+        soldOutSizes: [],
+        images: ["image/معطف ابيض واسود.jpeg", "image/معطف ابيض وسكني.jpeg"]
+    },
+    {
+        id: 12,
+        title: "معطف شتوي ",
+        price: "250 شيكل",
+        desc: "معطف شتوي جميل وانيق ",
+        sizes: ["38", "40", "42", "44", "46", "48"],
+        soldOutSizes: [],
+        images: ["image/معطف ابيض.jpeg", "image/معطف اخضر.jpeg", "image/معطف بيج.jpeg"]
+    },
+    {
+        id: 13,
+        title: "جلباب شتوي ",
+        price: "250 شيكل",
+        desc: " جلباب شتوي انيق ومميز بدمج اللون الابيض مع الاسود او الكحلي",
+        sizes: ["38", "40", "42", "44", "46"],
+        soldOutSizes: [],
+        images: ["image/جلباب شتوي.jpeg"]
+    },
+    {
+        id: 14,
+        title: "جلباب انيق",
+        price: "260 شيكل",
+        desc: "جلباب انيق ومميز ",
+        sizes: ["40", "42", "44", "46","48", "50", "52", "54", "56", "58"],
+        soldOutSizes: [],
+        images: ["image/جلباب نهدي.jpeg", "image/جلباب اسود.jpeg"]
     }
-    // ... كرري نفس النمط لبقية الـ 14 موديل
 ];
 
-let activeProduct = null, slideIndex = 0, selectedSize = "";
+let activeProduct = null;
+let selectedSize = "";
+let slideIndex = 0;
+let currentMediaList = [];
 
 function initStore() {
     const grid = document.getElementById('mainGrid');
-    grid.innerHTML = '';
+    if(!grid) return;
+    grid.innerHTML = ''; 
     products.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.onclick = () => openProduct(p.id);
-        card.innerHTML = `<img src="${p.variants[0].img}"><p>${p.title}</p>`;
+        card.innerHTML = `
+            <img src="${p.images[0]}" alt="${p.title}">
+            <div class="card-info">
+                <p>${p.title}</p>
+                <span>عرض التفاصيل ◄</span>
+            </div>
+        `;
         grid.appendChild(card);
     });
 }
 
 function openProduct(id) {
     activeProduct = products.find(p => p.id === id);
-    slideIndex = 0;
-    renderPopup();
-    document.getElementById('productPopup').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
+    
+    
+    const firstAvailable = activeProduct.sizes.find(s => !activeProduct.soldOutSizes.includes(s));
+    selectedSize = firstAvailable || ""; 
 
-function renderPopup() {
-    const variant = activeProduct.variants[slideIndex];
     document.getElementById('pTitle').innerText = activeProduct.title;
     document.getElementById('pPrice').innerText = activeProduct.price;
     document.getElementById('pDesc').innerText = activeProduct.desc;
     
-    // تحديث الصور
-    const slider = document.getElementById('slides');
-    slider.innerHTML = '';
-    activeProduct.variants.forEach((v, i) => {
-        const img = document.createElement('img');
-        img.src = v.img;
-        if(i === slideIndex) img.className = 'active';
-        slider.appendChild(img);
-    });
+    updateSizeUI();
+    prepareMedia(); 
+    document.getElementById('productPopup').style.display = 'flex';
+}
 
-    // تحديث النمر بناءً على الصورة الحالية (نظام شي إن)
+function updateSizeUI() {
     const sizeBox = document.getElementById('sizeOptions');
+    const orderBtn = document.getElementById('orderBtn');
     sizeBox.innerHTML = '';
-    variant.sizes.concat(variant.soldOut).sort().forEach(s => {
-        const isSold = variant.soldOut.includes(s);
+    
+    activeProduct.sizes.forEach(s => {
+        const isSoldOut = activeProduct.soldOutSizes.includes(s);
         const btn = document.createElement('div');
-        btn.className = `size-btn ${s === selectedSize ? 'active' : ''} ${isSold ? 'sold-out' : ''}`;
+        btn.className = `size-btn ${s === selectedSize ? 'active' : ''} ${isSoldOut ? 'disabled-size' : ''}`;
         btn.innerText = s;
-        if(!isSold) btn.onclick = () => { selectedSize = s; renderPopup(); };
+        
+        if (!isSoldOut) {
+            btn.onclick = (e) => { e.stopPropagation(); selectedSize = s; updateSizeUI(); };
+        }
         sizeBox.appendChild(btn);
     });
 
-    document.getElementById('counter').innerText = `${slideIndex + 1} / ${activeProduct.variants.length}`;
+    
+    orderBtn.disabled = (selectedSize === "");
+    orderBtn.innerText = selectedSize === "" ? "نفدت جميع المقاسات" : "اطلب الآن عبر واتساب";
+}
+
+function prepareMedia() {
+    currentMediaList = [];
+    activeProduct.images.forEach(imgUrl => { currentMediaList.push({ type: 'image', url: imgUrl }); });
+    slideIndex = 0;
+    renderSlides();
+}
+
+function renderSlides() {
+    const container = document.getElementById('slides');
+    container.innerHTML = '';
+    currentMediaList.forEach((m, i) => {
+        let el = document.createElement('img');
+        el.src = m.url;
+        if(i === slideIndex) el.className = 'active';
+        container.appendChild(el);
+    });
+    document.getElementById('counter').innerText = `${slideIndex + 1} / ${currentMediaList.length}`;
 }
 
 function changeSlide(n) {
-    slideIndex = (slideIndex + n + activeProduct.variants.length) % activeProduct.variants.length;
-    selectedSize = ""; // تصفير المقاس عند تغيير اللون
-    renderPopup();
+    slideIndex += n;
+    if(slideIndex >= currentMediaList.length) slideIndex = 0;
+    if(slideIndex < 0) slideIndex = currentMediaList.length - 1;
+    renderSlides();
 }
+
+function closeProduct() { document.getElementById('productPopup').style.display = 'none'; }
 
 function orderWhatsApp() {
-    if(!selectedSize) { alert("رجاءً اختاري المقاس أولاً"); return; }
     const phone = "972594935357";
-    const msg = `طلب جديد:\nالموديل: ${activeProduct.title}\nالمقاس: ${selectedSize}\nالسعر: ${activeProduct.price}`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+    const currentImageUrl = currentMediaList[slideIndex].url; 
+    const fileName = currentImageUrl.split('/').pop().split('.')[0];
+    const baseUrl = "https://bayanrayyan26.github.io/albatoul-2026/";
+    const fullImageUrl = baseUrl + encodeURI(currentImageUrl);
+
+    const message = `مرحباً البتول للزي الشرعي،\n` +
+                  `أود طلب الموديل: ${activeProduct.title}\n` +
+                  `اللون المختار: ${fileName}\n` +
+                  `المقاس: ${selectedSize}\n` +
+                  `السعر: ${activeProduct.price}\n` +
+                  `رابط الصورة: ${fullImageUrl}`;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-function closeProduct() { document.getElementById('productPopup').style.display = 'none'; document.body.style.overflow = 'auto'; }
+function startEidCelebration() {
+    const today = new Date();
+    const endDate = new Date(2026, 2, 24); 
+    if (today <= endDate) {
+        const greeting = document.getElementById('eidGreeting');
+        if(greeting) {
+            greeting.style.display = 'flex';
+            setTimeout(() => {
+                greeting.style.opacity = '0';
+                setTimeout(() => { greeting.style.display = 'none'; }, 1000);
+            }, 5000); 
+        }
+    }
+}
 
-window.onload = initStore;
+window.onload = () => { initStore(); startEidCelebration(); };
